@@ -24,7 +24,7 @@ services:
     networks:
       - test-network
     healthcheck:
-      test: [ "CMD", "wget", "--spider", "http://localhost:8080/api/health" ]
+      test: [ "CMD", "wget", "--spider", "http://localhost:8080/health" ]
       interval: 5s
       timeout: 5s
       retries: 5
