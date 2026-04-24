@@ -55,9 +55,11 @@ func main() {
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/api/users", usersHandler)
 	http.HandleFunc("/api/users/add", addUserHandler)
-	http.HandleFunc("/api/health", healthHandler)
 	http.HandleFunc("/api/users/", singleUserHandler)
-
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+	    w.WriteHeader(http.StatusOK)
+   	    w.Write([]byte(`{"status":"UP"}`))
+	})
 	port := getEnv("PORT", "8080")
 	log.Printf("Server starting on port %s", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
